@@ -4,7 +4,8 @@ function App() {
   return (
     <>
       <h1>Moody</h1>
-      <p>Nennen Sie ihre heutige Emotion:</p>
+      <h3>Wie fühlst du dich heute?</h3>
+      <p>Nenne deine heutige Emotion:</p>
       <button className='card'>
         Freude
       </button>
