@@ -10,13 +10,8 @@ const app = express();
 
 
 // Enable CORS for client app
-app.use(cors({
-  origin: CLIENT_ORIGIN,
-}));
-
-
-
-// Middleware
+app.use(cors({ origin: CLIENT_ORIGIN }));
+app.use(express.json());
 app.use(logging);
 
 

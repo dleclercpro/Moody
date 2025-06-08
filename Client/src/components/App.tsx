@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import './App.scss';
 import CallGetUser from '../calls/CallGetUser';
+import CallSetEmotion from '../calls/CallSetEmotion';
+import { Emotion } from '../types/common';
 
 interface User {
   name: string,
@@ -25,22 +27,22 @@ const App = () => {
       <h1>Moody</h1>
       <h3>{text}</h3>
       <p>Nenne deine heutige Emotion:</p>
-      <button className='card'>
+      <button className='card' onClick={() => CallSetEmotion(Emotion.Happiness)}>
         Freude
       </button>
-      <button className='card'>
+      <button className='card' onClick={() => CallSetEmotion(Emotion.Sadness)}>
         Traurigkeit
       </button>
-      <button className='card'>
+      <button className='card' onClick={() => CallSetEmotion(Emotion.Anger)}>
         Wut
       </button>
-      <button className='card'>
+      <button className='card' onClick={() => CallSetEmotion(Emotion.Fear)}>
         Angst
       </button>
-      <button className='card'>
+      <button className='card' onClick={() => CallSetEmotion(Emotion.Shame)}>
         Scham
       </button>
-      <button className='card'>
+      <button className='card' onClick={() => CallSetEmotion(Emotion.Disgust)}>
         Ekel
       </button>
     </>
