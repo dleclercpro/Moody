@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import './App.scss';
-import CallGetUser from './calls/CallGetUser';
+import CallGetUser from '../calls/CallGetUser';
 
 interface User {
   name: string,
