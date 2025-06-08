@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import './App.scss';
+import CallGetUser from './calls/CallGetUser';
 
 interface User {
   name: string,
@@ -12,15 +13,9 @@ const App = () => {
   const text = `Wie fühlst du dich heute, ${user.name}?`;
   
   useEffect(() => {
-    fetch('http://localhost:8000/api/user')
-      .then(res => {
-        return res.json();
-      })
+    CallGetUser()
       .then(data => {
         setUser(data);
-      })
-      .catch(err => {
-        console.error(err);
       });
 
   }, []);
