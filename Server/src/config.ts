@@ -7,6 +7,7 @@ import { getDirName } from './utils/path';
 export const SERVER_PROTOCOL = 'http';
 export const SERVER_HOST = 'localhost';
 export const SERVER_PORT = process.env.PORT || 8000;
+export const SERVER_ORIGIN = `${SERVER_PROTOCOL}://${SERVER_HOST}:${SERVER_PORT}`;
 
 export const CLIENT_PROTOCOL = 'http';
 export const CLIENT_HOST = 'localhost';

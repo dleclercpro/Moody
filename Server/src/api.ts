@@ -1,16 +1,11 @@
 import { Router } from 'express';
+import { DUMMY_USER } from './data/dummy';
 
 const router = Router();
 
 
 
-const DUMMY_USER = {
-    name: 'DummyUser',
-};
-
-
-
-// User
+// User API
 router.get('/user', (req, res) => {
    res.json(DUMMY_USER);
 });

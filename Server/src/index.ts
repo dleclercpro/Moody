@@ -1,7 +1,9 @@
 import express from 'express';
 import cors from 'cors';
 import API from './api';
-import { SERVER_PROTOCOL, SERVER_HOST, SERVER_PORT, CLIENT_ORIGIN, DIR_CLIENT_STATIC } from './config';
+import { SERVER_ORIGIN, SERVER_PORT, CLIENT_ORIGIN, DIR_CLIENT_STATIC } from './config';
+import logging from './middleware/logging';
+import logger from './utils/logger';
 
 const app = express();
 
@@ -14,21 +16,8 @@ app.use(cors({
 
 
 
-// Log requests
-app.use((req, res, next) => {
-    console.log(req.url);
-
-    next();
-});
-
-
-
-// Root route
-app.get('/', (req, res) => {
-  res.json({
-    'status': 'OK',
-  });
-});
+// Middleware
+app.use(logging);
 
 
 
@@ -51,5 +40,5 @@ app.use('/api', API);
 
 // Start app
 app.listen(SERVER_PORT, () => {
-  console.log(`Server listening on ${SERVER_PROTOCOL}://${SERVER_HOST}:${SERVER_PORT}`);
+  logger.info(`Server listening on ${SERVER_ORIGIN}`);
 });
