@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import './App.scss';
 import CallGetUser from '../calls/CallGetUser';
-import CallSetEmotion from '../calls/CallSetEmotion';
-import { EMOTIONS } from '../constants';
-import { capitalize } from '../utils/common';
 import { Emotion } from '../types/common';
+import EmotionMosaic from './EmotionMosaic';
+import { MOCK_USERS } from '../data/users';
+import EmotionChoice from './EmotionChoice';
 
 interface User {
   name: string,
@@ -15,38 +15,22 @@ interface User {
 
 const App = () => {
   const [user, setUser] = useState<User>({ name: '', emotion: null });
-  const text = `Hey, ${user.name}! How are you feeling today?`;
-  
-  useEffect(() => {
-    CallGetUser()
-      .then(data => {
-        setUser(data);
-      });
 
+  useEffect(() => {
+    CallGetUser().then((data) => {
+      setUser(data);
+    });
   }, []);
 
-  const handleClick = (emotion: Emotion) => () => {
-    CallSetEmotion(emotion);
-    setUser({ ...user, emotion });
-  };
-
   return (
-    <>
+    <div className='container'>
       <h1>Moody</h1>
-      <h3>{text}</h3>
-      <p>Select your current emotion:</p>
-      
-      {EMOTIONS.map((emotion) => (
-        <button key={`button-emotion-${emotion}`} className='card' onClick={handleClick(emotion)}>
-          {capitalize(emotion)}
-        </button>
-      ))}
-
-      {user.emotion && (
-        <p>You selected: <strong>{capitalize(user.emotion)}</strong></p>
-      )}
-    </>
-  )
-}
+      {user.emotion ?
+        <EmotionMosaic user={user} users={MOCK_USERS} /> :
+        <EmotionChoice user={user} setUser={setUser} />
+      }
+    </div>
+  );
+};
 
 export default App;

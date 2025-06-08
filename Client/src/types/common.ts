@@ -8,3 +8,8 @@ export enum Emotion {
     Shame = 'shame',
     Disgust = 'disgust',
 };
+
+export interface User {
+  name: string;
+  emotion: Emotion | null;
+};

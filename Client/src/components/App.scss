@@ -5,10 +5,8 @@
   text-align: center;
 }
 
-.card {
-  padding: 2em;
-
-  &:not(:last-of-type) {
-    margin-right: 1em;
-  }
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

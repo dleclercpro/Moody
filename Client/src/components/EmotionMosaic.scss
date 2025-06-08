@@ -1,0 +1,53 @@
+.emotion-mosaic {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+    gap: 10px;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+.emotion-mosaic-tile {
+    width: 100%;
+    min-width: 0;
+    overflow: hidden;
+    aspect-ratio: 1 / 1;
+    border-radius: 4px;
+    transition: transform 0.2s;
+    cursor: default;
+
+    &.emotion-happiness {
+        background-color: #f9e552;
+        color: #000;
+    }
+
+    &.emotion-sadness {
+        background-color: #4d90fe;
+        color: white;
+    }
+
+    &.emotion-anger {
+        background-color: #e63946;
+        color: white;
+    }
+
+    &.emotion-fear {
+        background-color: #6a4c93;
+        color: white;
+    }
+
+    &.emotion-shame {
+        background-color: #f9844a;
+        color: white;
+    }
+
+    &.emotion-disgust {
+        background-color: #2b9348;
+        color: white;
+    }
+
+    &:hover {
+        transform: scale(1.05);
+    }
+}
