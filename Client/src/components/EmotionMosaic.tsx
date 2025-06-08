@@ -1,19 +1,20 @@
 import './EmotionMosaic.scss';
 import { User } from '../types/common';
 import { capitalize } from '../utils/common';
+import { useUser } from '../contexts/UserContext';
 
 interface MosaicProps {
-  user: User;
   users: User[];
-  setUser: (user: User) => void,
 }
 
 const EmotionMosaic = (props: MosaicProps) => {
-  const { user, users, setUser } = props;
+  const { users } = props;
+
+  const { user, setUserEmotion } = useUser();
 
   const text = `Hey, ${user.name}! Here is today's mood:`;
 
-  const reset = () => setUser({ ...user, emotion: null });
+  const reset = () => setUserEmotion(null);
 
   return (
     <div className='emotion-mosaic-container'>

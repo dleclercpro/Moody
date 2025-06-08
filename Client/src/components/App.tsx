@@ -1,33 +1,18 @@
-import { useEffect, useState } from 'react';
 import './App.scss';
-import CallGetUser from '../calls/CallGetUser';
-import { Emotion } from '../types/common';
 import EmotionMosaic from './EmotionMosaic';
 import { MOCK_USERS } from '../data/users';
 import EmotionChoice from './EmotionChoice';
-
-interface User {
-  name: string,
-  emotion: Emotion | null,
-}
-
-
+import { useUser } from '../contexts/UserContext';
 
 const App = () => {
-  const [user, setUser] = useState<User>({ name: '', emotion: null });
-
-  useEffect(() => {
-    CallGetUser().then((data) => {
-      setUser(data);
-    });
-  }, []);
+  const { user } = useUser();
 
   return (
     <div className='app-container'>
       <h1>Moody</h1>
       {user.emotion ?
-        <EmotionMosaic user={user} users={MOCK_USERS} setUser={setUser} /> :
-        <EmotionChoice user={user} setUser={setUser} />
+        <EmotionMosaic users={MOCK_USERS} /> :
+        <EmotionChoice />
       }
     </div>
   );
