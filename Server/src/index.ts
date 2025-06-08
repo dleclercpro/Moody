@@ -1,12 +1,25 @@
 import express from 'express';
-import { DIR_CLIENT_APP_DIST, SERVER_PROTOCOL, SERVER_HOST, SERVER_PORT } from './config';
+import cors from 'cors';
+import API from './api';
+import { SERVER_PROTOCOL, SERVER_HOST, SERVER_PORT, CLIENT_ORIGIN, DIR_CLIENT_STATIC } from './config';
 
 const app = express();
 
 
 
-// Static files
-app.use(express.static(DIR_CLIENT_APP_DIST));
+// Enable CORS for client app
+app.use(cors({
+  origin: CLIENT_ORIGIN,
+}));
+
+
+
+// Log requests
+app.use((req, res, next) => {
+    console.log(req.url);
+
+    next();
+});
 
 
 
@@ -17,10 +30,22 @@ app.get('/', (req, res) => {
   });
 });
 
-// Server bundled client app
+
+
+// Static files
+app.use(express.static(DIR_CLIENT_STATIC));
+
+
+
+// Serve bundled client app
 // app.get('*', (req, res) => {
-//   res.sendFile(FILE_CLIENT_APP);
+//   res.sendFile(FILE_CLIENT);
 // });
+
+
+
+// API
+app.use('/api', API);
 
 
 

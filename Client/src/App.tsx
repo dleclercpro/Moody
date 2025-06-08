@@ -1,10 +1,34 @@
+import { useEffect, useState } from 'react';
 import './App.scss';
 
-function App() {
+interface User {
+  name: string,
+}
+
+
+
+const App = () => {
+  const [user, setUser] = useState<User>({ name: '' });
+  const text = `Wie fühlst du dich heute, ${user.name}?`;
+  
+  useEffect(() => {
+    fetch('http://localhost:8000/api/user')
+      .then(res => {
+        return res.json();
+      })
+      .then(data => {
+        setUser(data);
+      })
+      .catch(err => {
+        console.error(err);
+      });
+
+  }, []);
+
   return (
     <>
       <h1>Moody</h1>
-      <h3>Wie fühlst du dich heute?</h3>
+      <h3>{text}</h3>
       <p>Nenne deine heutige Emotion:</p>
       <button className='card'>
         Freude
