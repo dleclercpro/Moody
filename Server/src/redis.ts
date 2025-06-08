@@ -1,5 +1,6 @@
 import { createClient } from 'redis';
 import { REDIS_HOST, REDIS_PORT, REDIS_PROTOCOL } from './config';
+import logger from './utils/logger';
 
 const redis = createClient({
     url: `${REDIS_PROTOCOL}://${REDIS_HOST}:${REDIS_PORT}`,
@@ -15,7 +16,11 @@ redis.on('error', (err) => {
 
 
 // Start database
-await redis.connect();
+try {
+    await redis.connect();
+} catch (err: any) {
+    logger.error(`Redis error: could not connect!`);
+}
 
 
 

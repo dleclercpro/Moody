@@ -1,9 +1,14 @@
 import { NextFunction, Request, Response } from 'express';
 import logger from '../utils/logger';
+import redis from '../redis';
+import { DUMMY_USER } from '../data/dummy';
 
-const SetUserEmotionController =(req: Request, res: Response, next?: NextFunction) => {
+const SetUserEmotionController = async (req: Request, res: Response, next?: NextFunction) => {
     try {
         const { emotion } = req.body;
+
+        // Store emotion in DB
+        await redis.set(DUMMY_USER.name, emotion);
 
         logger.info(`User's emotion: ${emotion}`);
 

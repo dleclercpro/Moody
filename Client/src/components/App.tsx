@@ -8,14 +8,14 @@ import { Emotion } from '../types/common';
 
 interface User {
   name: string,
+  emotion: Emotion | null,
 }
 
 
 
 const App = () => {
-  const [user, setUser] = useState<User>({ name: '' });
+  const [user, setUser] = useState<User>({ name: '', emotion: null });
   const text = `Hey, ${user.name}! How are you feeling today?`;
-  const [emotion, setEmotion] = useState<Emotion | null>(null);
   
   useEffect(() => {
     CallGetUser()
@@ -27,7 +27,7 @@ const App = () => {
 
   const handleClick = (emotion: Emotion) => () => {
     CallSetEmotion(emotion);
-    setEmotion(emotion);
+    setUser({ ...user, emotion });
   };
 
   return (
@@ -42,8 +42,8 @@ const App = () => {
         </button>
       ))}
 
-      {emotion && (
-        <p>You selected: {emotion}</p>
+      {user.emotion && (
+        <p>You selected: <strong>{capitalize(user.emotion)}</strong></p>
       )}
     </>
   )
