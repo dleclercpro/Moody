@@ -1,53 +1,61 @@
-.emotion-mosaic {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
-    gap: 10px;
-    width: 100%;
-    max-width: 100%;
-    margin: 0 auto;
-    box-sizing: border-box;
-}
+.emotion-mosaic-container {
 
-.emotion-mosaic-tile {
-    width: 100%;
-    min-width: 0;
-    overflow: hidden;
-    aspect-ratio: 1 / 1;
-    border-radius: 4px;
-    transition: transform 0.2s;
-    cursor: default;
-
-    &.emotion-happiness {
-        background-color: #f9e552;
-        color: #000;
+    .emotion-reset {
+        text-decoration: underline;
+        cursor: pointer;
     }
 
-    &.emotion-sadness {
-        background-color: #4d90fe;
-        color: white;
+    .emotion-mosaic {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+        gap: 10px;
+        width: 100%;
+        max-width: 100%;
+        margin: 0 auto;
+        box-sizing: border-box;
     }
 
-    &.emotion-anger {
-        background-color: #e63946;
-        color: white;
-    }
+    .emotion-mosaic-tile {
+        width: 100%;
+        min-width: 0;
+        overflow: hidden;
+        aspect-ratio: 1 / 1;
+        border-radius: 4px;
+        transition: transform 0.2s;
+        cursor: default;
 
-    &.emotion-fear {
-        background-color: #6a4c93;
-        color: white;
-    }
+        &:hover {
+            transform: scale(1.05);
+        }
 
-    &.emotion-shame {
-        background-color: #f9844a;
-        color: white;
-    }
+        &.emotion-happiness {
+            background-color: #f9e552;
+            color: #000;
+        }
 
-    &.emotion-disgust {
-        background-color: #2b9348;
-        color: white;
-    }
+        &.emotion-sadness {
+            background-color: #4d90fe;
+            color: white;
+        }
 
-    &:hover {
-        transform: scale(1.05);
+        &.emotion-anger {
+            background-color: #e63946;
+            color: white;
+        }
+
+        &.emotion-fear {
+            background-color: #6a4c93;
+            color: white;
+        }
+
+        &.emotion-shame {
+            background-color: #f9844a;
+            color: white;
+        }
+
+        &.emotion-disgust {
+            background-color: #2b9348;
+            color: white;
+        }
     }
 }

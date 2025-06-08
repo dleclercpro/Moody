@@ -23,10 +23,10 @@ const App = () => {
   }, []);
 
   return (
-    <div className='container'>
+    <div className='app-container'>
       <h1>Moody</h1>
       {user.emotion ?
-        <EmotionMosaic user={user} users={MOCK_USERS} /> :
+        <EmotionMosaic user={user} users={MOCK_USERS} setUser={setUser} /> :
         <EmotionChoice user={user} setUser={setUser} />
       }
     </div>

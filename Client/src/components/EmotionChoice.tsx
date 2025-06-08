@@ -9,7 +9,9 @@ interface EmotionChoiceProps {
   setUser: (user: User) => void,
 }
 
-const EmotionChoice = ({ user, setUser }: EmotionChoiceProps) => {
+const EmotionChoice = (props: EmotionChoiceProps) => {
+  const { user, setUser } = props;
+
   const text = `Hey, ${user.name}! How are you feeling today?`;
 
   const handleClick = (emotion: Emotion) => () => {
@@ -18,14 +20,14 @@ const EmotionChoice = ({ user, setUser }: EmotionChoiceProps) => {
   };
 
   return (
-    <>
+    <div className='emotion-choice-container'>
       <h3>{text}</h3>
       <p>Select your current emotion:</p>
 
       <div className='emotion-buttons'>
         {EMOTIONS.map((emotion) => (
           <button
-            key={`button-emotion-${emotion}`}
+            key={`emotion-button-${emotion}`}
             className={`emotion-button emotion-${emotion}`}
             onClick={handleClick(emotion)}
           >
@@ -33,7 +35,7 @@ const EmotionChoice = ({ user, setUser }: EmotionChoiceProps) => {
           </button>
         ))}
       </div>
-    </>
+    </div>
   );
 };
 
