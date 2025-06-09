@@ -1,13 +1,19 @@
 import { SERVER_ORIGIN } from '../config';
 import { HttpMethod } from '../types/common';
 
-const getCallOptions = (method: HttpMethod, body?: any) => !body ? {} : {
-  method,
-  body: JSON.stringify(body),
-  headers: {
-    'Content-Type': 'application/json',
-  },
-};
+const getCallOptions = (method: HttpMethod, body?: any) => {
+  if (!body) {
+    return { method };
+  }
+  
+  return {
+    method,
+    body: JSON.stringify(body),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
+}
 
 
 

@@ -1,8 +1,9 @@
 import './App.scss';
-import EmotionMosaic from './EmotionMosaic';
-import { MOCK_USERS } from '../data/users';
-import EmotionChoice from './EmotionChoice';
-import { useUser } from '../contexts/UserContext';
+import EmotionMosaic from './components/EmotionMosaic';
+import { MOCK_USERS } from './data/users';
+import EmotionChoice from './components/EmotionChoice';
+import { useUser } from './contexts/UserContext';
+import QRCode from './pages/QRCode';
 
 const App = () => {
   const { user } = useUser();
@@ -14,6 +15,7 @@ const App = () => {
         <EmotionMosaic users={MOCK_USERS} /> :
         <EmotionChoice />
       }
+      <QRCode />
     </div>
   );
 };

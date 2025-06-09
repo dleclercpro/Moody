@@ -1,8 +1,10 @@
 import { NextFunction, Request, Response } from 'express';
 import redis from '../redis';
 import { v4 as createToken } from 'uuid';
+import QRCode from 'qrcode';
 import logger from '../utils/logger';
 import { User } from '../types/common';
+import { CLIENT_ORIGIN } from '../config';
 
 const CreateUserController = async (req: Request, res: Response, next?: NextFunction) => {
     try {
@@ -23,20 +25,23 @@ const CreateUserController = async (req: Request, res: Response, next?: NextFunc
         };
 
         // Find a unique ID for new user
-        let id = '';
+        let token = '';
         let exists = false;
         
-        while (id == '' || exists) {
-            id = createToken();
+        while (token == '' || exists) {
+            token = createToken();
 
             // Check if user already exists
-            exists = Boolean(await redis.get(id));
+            exists = Boolean(await redis.get(token));
         }
 
         // Store user in DB
-        await redis.set(id, JSON.stringify(user));
+        await redis.set(token, JSON.stringify(user));
 
-        res.json({ id, user });
+        // Create QR code for user to log into the app
+        const qr = await QRCode.toDataURL(`${CLIENT_ORIGIN}/auth/qr?token=${token}`);
+
+        res.json({ token, user, qr });
     } catch (err: any) {
         logger.error(err.message);
 

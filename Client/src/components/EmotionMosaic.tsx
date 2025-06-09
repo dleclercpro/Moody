@@ -3,22 +3,20 @@ import { User } from '../types/common';
 import { capitalize } from '../utils/common';
 import { useUser } from '../contexts/UserContext';
 
-interface MosaicProps {
+interface EmotionMosaicProps {
   users: User[];
 }
 
-const EmotionMosaic = (props: MosaicProps) => {
+const EmotionMosaic = (props: EmotionMosaicProps) => {
   const { users } = props;
 
   const { user, setUserEmotion } = useUser();
-
-  const text = `Hey, ${user.name}! Here is today's mood:`;
 
   const reset = () => setUserEmotion(null);
 
   return (
     <div className='emotion-mosaic-container'>
-      <h3>{text}</h3>
+      <h3>{`Hey, ${user.name}! Here is today's mood:`}</h3>
   
       <div className='emotion-mosaic'>
         {users.map((user, index) => (
