@@ -7,6 +7,8 @@ const SetUserEmotionController = async (req: Request, res: Response, next?: Next
     try {
         const { emotion } = req.body;
 
+        if (!emotion) throw new Error('NO_USER_EMOTION');
+
         // Store emotion in DB
         await redis.set(DUMMY_USER.name, emotion);
 
@@ -14,7 +16,7 @@ const SetUserEmotionController = async (req: Request, res: Response, next?: Next
 
         res.sendStatus(200);
     } catch (err: any) {
-        logger.error(`Could not determine user's emotion.`);
+        logger.error(err.message);
 
         res.sendStatus(500);
     }

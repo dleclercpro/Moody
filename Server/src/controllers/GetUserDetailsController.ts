@@ -9,10 +9,14 @@ const GetUserDetailsController = async (req: Request, res: Response, next?: Next
     try {
         const emotion = await redis.get(user.name);
 
-        logger.info(`User '${user.name}' already has an emotion: ${emotion}`);
+        if (emotion) {
+            logger.info(`User '${user.name}' already has an emotion: ${emotion}`);
+        }
         
         res.json(emotion ? { ...user, emotion } : user);
     } catch (err: any) {
+        logger.error(err.message);
+
         res.sendStatus(500);
     }
 }
