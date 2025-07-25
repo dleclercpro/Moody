@@ -5,6 +5,8 @@ import { SERVER_ORIGIN, SERVER_PORT, CLIENT_ORIGIN, DIR_CLIENT_STATIC } from './
 import logging from './middleware/logging';
 import logger from './utils/logger';
 
+
+
 const app = express();
 
 
@@ -34,6 +36,10 @@ app.use('/api', API);
 
 
 // Start app
-app.listen(SERVER_PORT, () => {
+export const server = app.listen(SERVER_PORT, () => {
   logger.info(`Server listening on ${SERVER_ORIGIN}`);
 });
+
+
+
+export default app;

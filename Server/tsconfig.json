@@ -1,10 +1,10 @@
 {
   "compilerOptions": {
+    "module": "commonjs",
     "target": "es2020",
-    "module": "es2022",
     "moduleResolution": "node",
     "moduleDetection": "force",
-    "rootDir": "./src",
+    "rootDir": ".",
     "outDir": "./dist",
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
@@ -13,5 +13,8 @@
     "resolveJsonModule": true,
     "forceConsistentCasingInFileNames": true
   },
-  "include": ["src"]
+  "include": [
+    "src",
+    "test"
+  ]
 }

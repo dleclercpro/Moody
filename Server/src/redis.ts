@@ -17,7 +17,7 @@ redis.on('error', (err) => {
 
 // Start database
 try {
-    await redis.connect();
+    redis.connect();
 } catch (err: any) {
     logger.error(`Redis error: could not connect!`);
 }

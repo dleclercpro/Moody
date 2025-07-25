@@ -7,6 +7,13 @@ const router = Router();
 
 
 
+// Dummy API
+router.get('/test', (req, res, next) => {
+  res.sendStatus(200);
+});
+
+
+
 // User API
 router.get('/user', GetUserDetailsController);
 router.post('/user', CreateUserController);

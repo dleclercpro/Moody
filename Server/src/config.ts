@@ -1,5 +1,4 @@
 import path from 'path';
-import { getDirName } from './utils/path';
 
 
 
@@ -21,7 +20,7 @@ export const REDIS_PORT = 6379;
 
 
 // Paths
-export const DIR_CLIENT_ROOT = path.join(getDirName(), '../../Client');
+export const DIR_CLIENT_ROOT = path.join(__dirname, '../../Client');
 export const DIR_CLIENT_STATIC = path.join(DIR_CLIENT_ROOT, 'static');
 export const DIR_CLIENT_DIST = path.join(DIR_CLIENT_ROOT, 'dist');
 
