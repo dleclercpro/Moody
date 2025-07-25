@@ -4,6 +4,7 @@ import API from './api';
 import { SERVER_ORIGIN, SERVER_PORT, CLIENT_ORIGIN, DIR_CLIENT_STATIC } from './config';
 import logging from './middleware/logging';
 import logger from './utils/logger';
+import ErrorRequestHandler from './errors/ErrorRequestHandler';
 
 
 
@@ -32,6 +33,11 @@ app.use(express.static(DIR_CLIENT_STATIC));
 
 // API
 app.use('/api', API);
+
+
+
+// Error-handling
+app.use(ErrorRequestHandler);
 
 
 

@@ -1,6 +1,6 @@
 import request from 'supertest';
-import app, { server } from '../src/index';
-import redis from '../src/redis';
+import app, { server } from '../../../src/index';
+import redis from '../../../src/redis';
 
 describe('GET /test', () => {
   it('should return a 200 status code', async () => {
